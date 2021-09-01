@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;400;500&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+
+    <title>Total Surface Area of a Cuboid | ITA Assignment</title>
+</head>
+
+<body class="preload">
+    <div class="container-main">
+        <label for="input" id="label">Enter the length of a cuboid:</label>
+        <div class="input-wrapper">
+            <input type="text" name="input" id="input" title="Enter numeric value" autocomplete="off" maxlength="12">
+            <input type="button" id="save" value="&nbsp;" title="Store the value">
+        </div>
+        <img src="./multimedia/Cuboid_Diagram.png" alt="" id="image" style="visibility: hidden;">
+        <p id="length">&nbsp;</p>
+        <p id="width">&nbsp;</p>
+        <p id="height">&nbsp;</p>
+        <input type="button" id="getSurface" value="Get the surface area" style="visibility: hidden;">
+        <span id="tsaTop">The total surface area of a cuboid:</span>
+        <hr id="topRule">
+        <p id="result">&nbsp;</p>
+        <hr id="groundRule">
+        <span id="tsaGround">given by formula:<span id="formula"><em> S = 2(lw + wh + hl)</em></span></span>
+    </div>
+
+    <footer class="footer">
+        <span id="textLeft"><a href="https://mathworld.wolfram.com/Cuboid.html" target="_blank"
+                title="Learn more about cuboid @ MathWorld">Cuboid, Cuboid Total
+                Surface
+                Area</a></span>
+        <span id="textRight">
+            dej4n.s@gmail.com | 2020
+        </span>
+    </footer>
+
+    <script>
+
+        // function enableTransitions() {
+        //     document.querySelector("body").removeClass("preload");
+        // }
+
+        // window.addEventListener("load", enableTransitions);
+
+        const cuboidDimensions = [];
+        let stored = 0;
+
+        const buttonSave = document.getElementById("save");
+        buttonSave.addEventListener("click", validateInput)
+
+        const buttonSurfaceArea = document.getElementById("getSurface");
+        buttonSurfaceArea.addEventListener("click", calculateSurfaceArea);
+
+        function validateInput() {
+            const regexp = /^[0-9]*\.?[0-9]*$/;
+            const userInput = (document.getElementById("input").value);
+            if (regexp.test(userInput) && !(userInput == 0 || userInput === "")) {
+                store(userInput);
+                display(userInput, true);
+            } else {
+                display(userInput, false);
+            }
+            document.getElementById("result").innerHTML = "&nbsp";
+        }
+
+        function store(dimension) {
+            cuboidDimensions.push(dimension);
+            stored++;
+        }
+
+        function display(userInput, valid) {
+            if (valid) {
+                const paragraph = document.querySelector(".container-main > p:nth-of-type(" + stored + ")");
+                switch (stored) {
+                    case 1:
+                        paragraph.innerHTML = `Length&nbsp;&nbsp; <em>l</em>&nbsp; =&nbsp; ${userInput}`;
+                        paragraph.classList.remove("failed");
+                        paragraph.classList.add("accepted");
+                        document.getElementById("label").innerHTML = "Enter the width of cuboid:";
+                        break;
+                    case 2:
+                        paragraph.innerHTML = `Width&nbsp;&nbsp; <em>w</em>&nbsp; =&nbsp; ${userInput}`;
+                        paragraph.classList.remove("failed");
+                        paragraph.classList.add("accepted");
+                        document.getElementById("label").innerHTML = "Enter the height of cuboid:";
+                        break;
+                    case 3:
+                        paragraph.innerHTML = `Height&nbsp;&nbsp; <em>h</em>&nbsp; =&nbsp; ${userInput}`;
+                        paragraph.classList.remove("failed");
+                        paragraph.classList.add("accepted");
+                        enable(true);
+                        let pic = document.getElementById("image");
+                        if (pic.style.visibility === "hidden") {
+                            pic.style.visibility = "visible";
+                        }
+                        break;
+                    case 4:
+                        paragraph.innerHTML = userInput;
+                        document.getElementById("topRule").classList.add("showTopRule");
+                        document.getElementById("groundRule").classList.add("showGroundRule");
+                        document.getElementById("tsaTop").classList.add("showTsaTop");
+                        document.getElementById("tsaGround").classList.add("showTsaGround");
+                        break;
+                    default:
+                        paragraph.innerHTML = "error!?";
+                        break;
+                }
+            } else {
+                const paragraph = document.querySelector(".container-main > p:nth-of-type(" + (stored + 1) + ")");
+                paragraph.innerHTML = `"${userInput}"&nbsp;&nbsp;is unacceptable!`;
+                paragraph.classList.add("failed");
+            }
+
+            //resets input field
+            document.getElementById("input").value = "";
+
+        }// display() END
+
+        function calculateSurfaceArea() {
+            //2(lw + wh + hl)
+            stored++;
+            let tsa = (2 * (cuboidDimensions[0] * cuboidDimensions[1] + cuboidDimensions[1] * cuboidDimensions[2] + cuboidDimensions[2] * cuboidDimensions[0])).toFixed(2);
+            display(tsa, true);
+            enable(false);
+            reset();
+        }
+
+        function enable(state) {
+            document.getElementById("input").disabled = state;
+            buttonSave.disabled = state;
+            if (state) {
+                buttonSurfaceArea.style.visibility = "visible";
+            }
+            buttonSurfaceArea.disabled = !state;
+
+        }
+
+        function reset() {
+            document.getElementById("label").innerHTML = "Enter the length of cuboid :&nbsp;";
+            cuboidDimensions.splice(0, cuboidDimensions.length);
+            if (stored == 4) {
+                const paragraphs = document.querySelectorAll(".container-main > p");
+                for (let i = 0; i < paragraphs.length - 1; i++) {
+                    const element = paragraphs[i];
+                    element.innerHTML = "&nbsp;";
+                    element.classList.remove("accepted");
+                }
+            }
+            stored = 0;
+        }
+
+    </script>
+</body>
+
+</html>

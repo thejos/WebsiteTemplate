@@ -1,0 +1,3 @@
+Dokumenti bez ekstenzije: Banana, Blackberry, Grape, Watermelon, sadrže tekst koji opisuje stavke HTML <select> elementa.
+Tekst se putem metode fetchData(param), koja je dio JavaScript logike ovog projekta, uèitava iz dokumenta i prezentuje korisniku u okviru web stranice.
+Zbog sigurnosnih razloga JavaScript (metod fetchData()) ne može proèitati sadržaj ovih dokumenata ukoliko se projekat nalazi na fajlsistemu klijenta. Ukoliko bi projekat bio postavljen na server ova funkcionalnost bi bila omoguæena. Pogledaj komentare na dnu <script> sekcije unutar index.html dokumenta.

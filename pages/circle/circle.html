@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Area | JavaScript Demo</title>
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="container">
+    <header class="header">
+        <label for="input">Enter the radius of a circle : </label>
+        <form name="userInput">
+            <input type="text" name="radiusValue" id="input" autocomplete="off"
+                placeholder="Enter positive numeric value...">
+            <input type="button" value="Calculate" onClick="CalculateArea();">
+        </form>
+
+        <div class="break"></div>
+
+        <span id="result">Area of the circle is:&nbsp;?</span>
+    </header>
+
+    <section class="content-main">
+        <div class="image-box">
+        </div>
+        <div class="text-box">
+            <blockquote cite="https://thinkmath.edc.org/resource/shape-circle"><em>A circle is the set of points in a
+                    plane that are equidistant from a fixed point
+                    (the center of the circle).</em>
+            </blockquote><br>
+            <blockquote cite="https://en.wikipedia.org/wiki/Circle">
+                <em>Specifically, a <a href="https://en.wikipedia.org/wiki/Circle" target="_blank">circle</a> is a
+                    simple closed curve that divides the plane into two regions: an interior
+                    and
+                    an exterior. In everyday use, the term "circle" may be used interchangeably to refer to either the
+                    boundary of the figure, or to the whole figure including its interior; in strict technical usage,
+                    the
+                    circle is only the boundary and the whole figure is called a disc.</em>
+            </blockquote><br>
+            <blockquote cite="https://www.mathopenref.com/tocs/circlestoc.html">
+                <em>The radius of a circle is the length of the line from the center to any point on its edge.
+                    Given the radius of a circle, the area inside it can be calculated using the formula: <br><br>
+                    Area = π R 2 <br>
+                    where:
+                    R is the radius of the circle,<br>
+                    π is Pi, approximately 3.142</em>
+            </blockquote>
+            <a href="https://www.mathopenref.com/circlearea.html" target="_blank" id="articleLink">Learn more</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Circle, Circle area - 2020 - dej4n.s@gmail.com</p>
+    </footer>
+
+    <script type="text/javascript">
+        function CalculateArea() {
+            // Provjera unesene vrijednosti
+            if (document.userInput.radiusValue.value === "" || isNaN(document.userInput.radiusValue.value)) {
+                document.getElementById("result").innerHTML = ("Enter positive numeric value!");
+            } else if (document.userInput.radiusValue.value <= 0) {
+                document.getElementById("result").innerHTML = ("Circle radius has to be bigger than zero!");
+            } else {
+                /*Preuzimanje vrijednosti iz forme i pohranjivanje vrijednosti u varijablu*/
+                var radius = document.userInput.radiusValue.value;
+                // Izjava x ** 2 daje isti rezultat kao i izjava: Math.pow(x, 2);
+                /* 
+                eksponencijalni operator ** je dio JavaScript-a od ES2016 standarda (ECMAScript6) 
+                */
+                var area = (radius ** 2 * Math.PI).toFixed(2);
+                // Ispis vrijednosti na stranici
+                document.getElementById("result").innerHTML = ("Area of the circle is:&nbsp;" + area);
+            }
+            // uklanjanje unosa
+            document.getElementById("input").value = "";
+        }
+    </script>
+</body>
+
+</html>

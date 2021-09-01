@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>HTML Select & JS | ITA Assignment</title>
+</head>
+
+<body>
+    <div class="main-container">
+        <form>
+            <select id="fruitList" name="fruit">
+                <option value="0" selected>---</option>
+                <option value="1">Banana</option>
+                <option value="2">Blackberry</option>
+                <option value="3">Grape</option>
+                <option value="4">Watermelon</option>
+            </select>
+        </form>
+        <div class="fruit">
+            <div class="fruit-info"></div>
+        </div>
+    </div>
+    <footer class="footer">
+        <span>JavaScript & HTML List Demo</span>
+        <span>dej4n.s@gmail.com | 2020</span>
+    </footer>
+
+    <script>
+
+        const fruitCombo = document.getElementById("fruitList");
+        fruitCombo.addEventListener("change", displayFruit);
+
+        function displayFruit() {
+            //Combo Box selected option (fruit)
+            let selected = parseInt(fruitCombo.options[fruitCombo.selectedIndex].value);
+
+            //Container to hold description of selected fruit
+            let fruitDesc = document.querySelector(".fruit");
+
+            let txt = document.querySelector(".fruit-info");
+            switch (selected) {
+
+                case 1:
+                    fruitDesc.style.backgroundImage = "url(./multimedia/banana.png)";
+
+                    // fetchData(fruitCombo.options[fruitCombo.selectedIndex].text);
+
+                    txt.innerHTML = "<b>History</b><br /> Bananas are thought to have been first domesticated in Southeast Asia, and their consumption is mentioned in early Greek, Latin, and Arab writings; Alexander the Great saw bananas on an expedition to India. Shortly after the discovery of America, <b>bananas</b> were taken from the Canary Islands to the New World, where they were first established in Hispaniola and soon spread to other islands and the mainland. Cultivation increased until bananas became a staple foodstuff in many regions, and in the 19th century they began to appear in the markets of the United States. Although Cavendish bananas are by far the most-common variety imported by nontropical countries, plantain varieties account for about 85 percent of all banana cultivation worldwide.<br /><br /><b>Nutrients</b><br /> Raw bananas (not including the peel) are 75% water, 23% carbohydrates, 1% protein, and contain negligible fat. A 100-gram reference serving supplies 89 Calories, 31% of the recommended Daily Value (DV) of vitamin B6, and moderate amounts of vitamin C, manganese and dietary fiber, with no other micronutrients in significant content."
+                    break;
+                case 2:
+                    fruitDesc.style.backgroundImage = "url(./multimedia/blackberry.png)";
+
+                    // fetchData(fruitCombo.options[fruitCombo.selectedIndex].text);
+
+                    txt.innerHTML = "<b>History</b><br />One of the earliest known instances of <b>blackberry</b> consumption comes from the remains of the Haraldskar Woman, the naturally preserved bog body of a Danish woman dating from approximately 2,500 years ago. Forensic evidence found blackberries in her stomach contents, among other foods. The use of blackberries to make wines and cordials was documented in the London Pharmacopoeia in 1696. As food, blackberries have a long history of use alongside other fruits to make pies, jellies and jams.<br /><br /><b>Nutrients</b><br />Cultivated blackberries are notable for their significant contents of dietary fiber, vitamin C, and vitamin K. A 100-gram serving of raw blackberries supplies 180 kilojoules (43 kcal) of food energy and 5 grams of dietary fiber or 25% of the recommended Daily Value (DV). In 100 grams, vitamin C and vitamin K contents are 25% and 19% DV, respectively, while other essential nutrients are low in content. Blackberries contain both soluble and insoluble fiber components. Blackberries are also noted for containing manganese and folic acid."
+                    break;
+                case 3:
+                    fruitDesc.style.backgroundImage = "url(./multimedia/grape.png)";
+
+                    // fetchData(fruitCombo.options[fruitCombo.selectedIndex].text);
+
+                    txt.innerHTML = "<b>History</b><br />The cultivation of the domesticated <b>grape</b> began 6,000–8,000 years ago in the Near East. Yeast, one of the earliest domesticated microorganisms, occurs naturally on the skins of grapes, leading to the discovery of alcoholic drinks such as wine. The earliest archeological evidence for a dominant position of wine-making in human culture dates from 8,000 years ago in Georgia. The oldest known winery was found in Armenia, dating to around 4000 BC. Ancient Egyptian hieroglyphics record the cultivation of purple grapes, and history attests to the ancient Greeks, Phoenicians, and Romans growing purple grapes both for eating and wine production. The growing of grapes would later spread to other regions in Europe, as well as North Africa, and eventually in North America.<br /><br /><b>Nutrients</b><br />Raw grapes are 81% water, 18% carbohydrates, 1% protein, and have negligible fat. A 100-gram (3 1⁄2-ounce) reference amount of raw grapes supplies 288 kilojoules (69 kilocalories) of food energy and a moderate amount of vitamin K (14% of the Daily Value), with no other micronutrients in significant content."
+                    break;
+                case 4:
+                    fruitDesc.style.backgroundImage = "url(./multimedia/watermelon.png)";
+
+                    // fetchData(fruitCombo.options[fruitCombo.selectedIndex].text);
+
+                    txt.innerHTML = "<b>History</b><br />The watermelon is a flowering plant that originated in West Africa, where it can also be found growing in the wild. <b>Watermelon</b> seeds were found in the Dead Sea region at the ancient settlements of Bab edh-Dhra and Tel Arad. In the 7th century, watermelons were being cultivated in India, and by the 10th century had reached China, which is today the world's single largest watermelon producer. The Moors introduced the fruit into the Iberian Peninsula and there is evidence of it being cultivated in Córdoba in 961 and also in Seville in 1158. It spread northwards through southern Europe, perhaps limited in its advance by summer temperatures being insufficient for good yields. The fruit had begun appearing in European herbals by 1600, and was widely planted in Europe in the 17th century as a minor garden crop. European colonists and slaves from Africa introduced the watermelon to the New World. Spanish settlers were growing it in Florida in 1576, and it was being grown in Massachusetts by 1629, and by 1650 was being cultivated in Peru, Brazil and Panama, as well as in many British and Dutch colonies.<br /><br /><b>Nutrients</b><br />Watermelon fruit is 91% water, contains 6% sugars, and is low in fat. In a 100-gram (3 1⁄2-ounce) serving, watermelon fruit supplies 125 kilojoules (30 kilocalories) of food energy and low amounts of essential nutrients. Only vitamin C is present in appreciable content at 10% of the Daily Value. Watermelon pulp contains carotenoids, including lycopene. The amino acid citrulline is produced in watermelon rind."
+                    break;
+                default:
+                    fruitDesc.style.backgroundImage = "";
+                    document.querySelector(".fruit-info").innerHTML = "";
+                    break;
+            }
+        }
+
+        // *** Local files (client filesystem) can not be read using javascript. Files can be accessed via the "file" input component, but that requires the user to explicitly select the file to be searched through. This is for security reasons so it can not be done in another way.
+
+        // *** fetchData(param) function works as long as THIS project is hosted on server
+
+        // function fetchData(fruitInfo) {
+        //     let txt = document.querySelector(".fruit-info");
+        //     fetch(`./multimedia/${fruitInfo}`)
+        //         .then(response => response.text())
+        //         .then((data) => { txt.innerHTML = (data) })
+
+        // }
+
+    </script>
+</body>
+
+</html>
